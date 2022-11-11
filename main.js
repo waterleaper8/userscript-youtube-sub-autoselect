@@ -20,30 +20,92 @@
 
   const autoSelect = () => {
     const settingsBtn = document.querySelector(
-      "button.ytp-button.ytp-settings-button.ytp-hd-quality-badge"
+      "button.ytp-button.ytp-settings-button"
     )
     settingsBtn.click()
-    const subBtn = document.querySelector(
-      "#ytp-id-18 > div > div > div:nth-child(4) > div.ytp-menuitem-content"
-    )
-    subBtn.click()
-    const langBtns = document.querySelectorAll(
-      "#ytp-id-18 > div > div.ytp-panel-menu > div"
-    )
-    langBtns.forEach((lang) => {
-      if (lang.querySelector(".ytp-menuitem-label").innerHTML === "自動翻訳") {
-        lang.click()
-      }
-    })
 
-    const autoLangBtns = document.querySelectorAll(
-      "#ytp-id-18 > div > div.ytp-panel-menu > div"
+    const settingItems = document.querySelectorAll(
+      ".ytp-panel-menu > .ytp-menuitem"
     )
-    autoLangBtns.forEach((lang) => {
-      if (lang.querySelector(".ytp-menuitem-label").innerHTML === "日本語") {
-        lang.click()
-      }
-    })
+    setTimeout(() => {
+      settingItems.forEach((item) => {
+        try {
+          if (item.querySelector("span").innerHTML === "字幕") {
+            item.click()
+          }
+        } catch (e) {}
+      })
+    }, 1000)
+
+    setTimeout(() => {
+      const langBtns = document.querySelectorAll(
+        ".ytp-panel-menu > .ytp-menuitem"
+      )
+      langBtns.forEach((lang) => {
+        // 字幕に日本語があった場合
+        if (lang.querySelector(".ytp-menuitem-label").innerHTML === "日本語") {
+          lang.click()
+          // 設定を閉じる
+          let KEvent = new KeyboardEvent("keydown", { keyCode: 27 })
+          document.dispatchEvent(KEvent)
+          return
+          // 字幕に日本語がなかった場合
+        } else {
+          langBtns.forEach((lang) => {
+            // 英語を選択
+            if (
+              lang.querySelector(".ytp-menuitem-label").innerHTML === "英語"
+            ) {
+              lang.click()
+
+              // 言語選択ボタンをクリック
+              const settingItems2 = document.querySelectorAll(
+                ".ytp-panel-menu > .ytp-menuitem"
+              )
+              setTimeout(() => {
+                settingItems2.forEach((item) => {
+                  try {
+                    if (item.querySelector("span").innerHTML === "字幕") {
+                      item.click()
+                    }
+                  } catch (e) {}
+                })
+              }, 1000)
+
+              // 自動翻訳を選択
+              setTimeout(() => {
+                const langBtns = document.querySelectorAll(
+                  ".ytp-panel-menu > .ytp-menuitem"
+                )
+                langBtns.forEach((lang) => {
+                  if (
+                    lang.querySelector(".ytp-menuitem-label").innerHTML ===
+                    "自動翻訳"
+                  ) {
+                    lang.click()
+                  }
+                })
+              }, 1500)
+
+              // 日本語を選択
+              setTimeout(() => {
+                const autoLangBtns = document.querySelectorAll(
+                  ".ytp-panel-menu > .ytp-menuitem"
+                )
+                autoLangBtns.forEach((lang) => {
+                  if (
+                    lang.querySelector(".ytp-menuitem-label").innerHTML ===
+                    "日本語"
+                  ) {
+                    lang.click()
+                  }
+                })
+              }, 2000)
+            }
+          })
+        }
+      })
+    }, 1500)
   }
 
   document.addEventListener("keydown", (event) => {
@@ -60,9 +122,7 @@
         // 字幕が無効なら
       } else {
         subBtn.click()
-        setTimeout(() => {
-          autoSelect()
-        }, 1000)
+        autoSelect()
       }
     }
   })
