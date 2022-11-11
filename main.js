@@ -58,11 +58,19 @@
             ) {
               lang.click()
 
-              // 言語選択ボタンをクリック
-              const settingItems2 = document.querySelectorAll(
-                ".ytp-panel-menu > .ytp-menuitem"
-              )
               setTimeout(() => {
+                settingsBtn.click()
+              }, 500)
+
+              setTimeout(() => {
+                settingsBtn.click()
+              }, 1000)
+
+              setTimeout(() => {
+                // 言語選択ボタンをクリック
+                const settingItems2 = document.querySelectorAll(
+                  ".ytp-panel-menu > .ytp-menuitem"
+                )
                 settingItems2.forEach((item) => {
                   try {
                     if (item.querySelector("span").innerHTML === "字幕") {
@@ -70,7 +78,7 @@
                     }
                   } catch (e) {}
                 })
-              }, 1000)
+              }, 1500)
 
               // 自動翻訳を選択
               setTimeout(() => {
@@ -85,7 +93,7 @@
                     lang.click()
                   }
                 })
-              }, 1500)
+              }, 2000)
 
               // 日本語を選択
               setTimeout(() => {
@@ -100,7 +108,7 @@
                     lang.click()
                   }
                 })
-              }, 2000)
+              }, 2500)
             }
           })
         }
