@@ -24,10 +24,10 @@
     )
     settingsBtn.click()
 
-    const settingItems = document.querySelectorAll(
-      ".ytp-panel-menu > .ytp-menuitem"
-    )
     setTimeout(() => {
+      const settingItems = document.querySelectorAll(
+        ".ytp-panel-menu > .ytp-menuitem"
+      )
       settingItems.forEach((item) => {
         try {
           if (item.querySelector("span").innerHTML === "字幕") {
@@ -35,7 +35,7 @@
           }
         } catch (e) {}
       })
-    }, 1000)
+    }, 500)
 
     setTimeout(() => {
       const langBtns = document.querySelectorAll(
@@ -51,66 +51,57 @@
           return
           // 字幕に日本語がなかった場合
         } else {
-          langBtns.forEach((lang) => {
-            // 英語を選択
-            if (
-              lang.querySelector(".ytp-menuitem-label").innerHTML === "英語"
-            ) {
-              lang.click()
+          // langBtns.forEach((lang) => {
+          //   // 英語を選択
+          //   if (
+          //     lang.querySelector(".ytp-menuitem-label").innerHTML === "英語"
+          //   ) {
+          //     lang.click()
+          //   }
+          // })
 
-              setTimeout(() => {
-                settingsBtn.click()
-              }, 500)
+          // 言語選択ボタンをクリック
+          // setTimeout(() => {
+          //   const settingItems2 = document.querySelectorAll(
+          //     ".ytp-panel-menu > .ytp-menuitem"
+          //   )
+          //   settingItems2.forEach((item) => {
+          //     try {
+          //       if (item.querySelector("span").innerHTML === "字幕") {
+          //         item.click()
+          //       }
+          //     } catch (e) {}
+          //   })
+          // }, 500)
 
-              setTimeout(() => {
-                settingsBtn.click()
-              }, 1000)
+          // 自動翻訳を選択
+          setTimeout(() => {
+            const langBtns = document.querySelectorAll(
+              ".ytp-panel-menu > .ytp-menuitem"
+            )
+            langBtns.forEach((lang) => {
+              if (
+                lang.querySelector(".ytp-menuitem-label").innerHTML ===
+                "自動翻訳"
+              ) {
+                lang.click()
+              }
+            })
+          }, 500)
 
-              setTimeout(() => {
-                // 言語選択ボタンをクリック
-                const settingItems2 = document.querySelectorAll(
-                  ".ytp-panel-menu > .ytp-menuitem"
-                )
-                settingItems2.forEach((item) => {
-                  try {
-                    if (item.querySelector("span").innerHTML === "字幕") {
-                      item.click()
-                    }
-                  } catch (e) {}
-                })
-              }, 1500)
-
-              // 自動翻訳を選択
-              setTimeout(() => {
-                const langBtns = document.querySelectorAll(
-                  ".ytp-panel-menu > .ytp-menuitem"
-                )
-                langBtns.forEach((lang) => {
-                  if (
-                    lang.querySelector(".ytp-menuitem-label").innerHTML ===
-                    "自動翻訳"
-                  ) {
-                    lang.click()
-                  }
-                })
-              }, 2000)
-
-              // 日本語を選択
-              setTimeout(() => {
-                const autoLangBtns = document.querySelectorAll(
-                  ".ytp-panel-menu > .ytp-menuitem"
-                )
-                autoLangBtns.forEach((lang) => {
-                  if (
-                    lang.querySelector(".ytp-menuitem-label").innerHTML ===
-                    "日本語"
-                  ) {
-                    lang.click()
-                  }
-                })
-              }, 2500)
-            }
-          })
+          // 日本語を選択
+          setTimeout(() => {
+            const autoLangBtns = document.querySelectorAll(
+              ".ytp-panel-menu > .ytp-menuitem"
+            )
+            autoLangBtns.forEach((lang) => {
+              if (
+                lang.querySelector(".ytp-menuitem-label").innerHTML === "日本語"
+              ) {
+                lang.click()
+              }
+            })
+          }, 1000)
         }
       })
     }, 1500)
